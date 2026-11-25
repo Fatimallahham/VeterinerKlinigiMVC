@@ -1,0 +1,72 @@
+@model VeterinerKlinigiMVC.Models.Pet
+
+@{
+    ViewData["Title"] = "Evcil Hayvan Sil";
+}
+
+<h1>Evcil Hayvan Sil</h1>
+
+<hr />
+
+<div class="alert alert-danger">
+    Bu evcil hayvanı silmek istediğinizden emin misiniz?
+    Bu işlem geri alınamaz.
+</div>
+
+<div class="card">
+    <div class="card-body">
+
+        <h4 class="card-title mb-4">
+            @Model.Name
+        </h4>
+
+        <dl class="row">
+
+            <dt class="col-sm-3">
+                Hayvan Adı
+            </dt>
+            <dd class="col-sm-9">
+                @Model.Name
+            </dd>
+
+            <dt class="col-sm-3">
+                Tür
+            </dt>
+            <dd class="col-sm-9">
+                @Model.Species
+            </dd>
+
+            <dt class="col-sm-3">
+                Irk
+            </dt>
+            <dd class="col-sm-9">
+                @Model.Breed
+            </dd>
+
+            <dt class="col-sm-3">
+                Doğum Tarihi
+            </dt>
+            <dd class="col-sm-9">
+                @Model.BirthDate.ToString("dd.MM.yyyy")
+            </dd>
+
+        </dl>
+
+        <hr />
+
+        <form asp-action="Delete" method="post">
+
+            <input type="hidden" asp-for="Id" />
+
+            <button type="submit" class="btn btn-danger">
+                Sil
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary">
+                İptal
+            </a>
+
+        </form>
+
+    </div>
+</div>

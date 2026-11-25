@@ -1,0 +1,80 @@
+@model VeterinerKlinigiMVC.Models.Pet
+
+@{
+    ViewData["Title"] = "Evcil Hayvan Düzenle";
+}
+
+<h1>Evcil Hayvan Düzenle</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+
+        <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+
+            <div asp-validation-summary="ModelOnly"
+                 class="text-danger"></div>
+
+            <input type="hidden" asp-for="Id" />
+
+            <!-- Hayvan Adı -->
+            <div class="form-group mb-3">
+                <label asp-for="Name" class="control-label">
+                    Hayvan Adı
+                </label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name"
+                      class="text-danger"></span>
+            </div>
+
+            <!-- Hayvan Türü -->
+            <div class="form-group mb-3">
+                <label asp-for="Species" class="control-label">
+                    Tür
+                </label>
+                <input asp-for="Species" class="form-control" />
+                <span asp-validation-for="Species"
+                      class="text-danger"></span>
+            </div>
+
+            <!-- Hayvan Irkı -->
+            <div class="form-group mb-3">
+                <label asp-for="Breed" class="control-label">
+                    Irk
+                </label>
+                <input asp-for="Breed" class="form-control" />
+                <span asp-validation-for="Breed"
+                      class="text-danger"></span>
+            </div>
+
+            <!-- Doğum Tarihi -->
+            <div class="form-group mb-3">
+                <label asp-for="BirthDate" class="control-label">
+                    Doğum Tarihi
+                </label>
+                <input asp-for="BirthDate"
+                       type="date"
+                       class="form-control" />
+                <span asp-validation-for="BirthDate"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">
+                    Güncelle
+                </button>
+
+                <a asp-action="Index" class="btn btn-secondary">
+                    Listeye Dön
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

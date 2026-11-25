@@ -1,0 +1,64 @@
+@model VeterinerKlinigiMVC.Models.Pet
+
+@{
+    ViewData["Title"] = "Evcil Hayvan Detayları";
+}
+
+<h1>Evcil Hayvan Detayları</h1>
+
+<hr />
+
+<div class="card">
+    <div class="card-body">
+
+        <h4 class="card-title mb-4">
+            @Model.Name
+        </h4>
+
+        <dl class="row">
+
+            <dt class="col-sm-3">
+                Hayvan Adı
+            </dt>
+            <dd class="col-sm-9">
+                @Model.Name
+            </dd>
+
+            <dt class="col-sm-3">
+                Tür
+            </dt>
+            <dd class="col-sm-9">
+                @Model.Species
+            </dd>
+
+            <dt class="col-sm-3">
+                Irk
+            </dt>
+            <dd class="col-sm-9">
+                @Model.Breed
+            </dd>
+
+            <dt class="col-sm-3">
+                Doğum Tarihi
+            </dt>
+            <dd class="col-sm-9">
+                @Model.BirthDate.ToString("dd.MM.yyyy")
+            </dd>
+
+        </dl>
+
+        <hr />
+
+        <a asp-action="Edit"
+           asp-route-id="@Model.Id"
+           class="btn btn-warning">
+            Düzenle
+        </a>
+
+        <a asp-action="Index"
+           class="btn btn-secondary">
+            Listeye Dön
+        </a>
+
+    </div>
+</div>
