@@ -1,0 +1,96 @@
+@model VeterinerKlinigiMVC.Models.Service
+
+@{
+    ViewData["Title"] = "Yeni Hizmet Ekle";
+}
+
+<h1 class="mb-4">Yeni Hizmet Ekle</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+
+        <form asp-action="Create" method="post">
+
+            <div asp-validation-summary="ModelOnly"
+                 class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label"></label>
+
+                <input asp-for="Name"
+                       class="form-control"
+                       placeholder="Örn: Genel Muayene" />
+
+                <span asp-validation-for="Name"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description"
+                       class="form-label"></label>
+
+                <textarea asp-for="Description"
+                          class="form-control"
+                          rows="3"
+                          placeholder="Hizmet açıklamasını giriniz">
+                </textarea>
+
+                <span asp-validation-for="Description"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Duration"
+                       class="form-label"></label>
+
+                <input asp-for="Duration"
+                       class="form-control"
+                       type="number"
+                       min="1"
+                       max="480" />
+
+                <span asp-validation-for="Duration"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Price"
+                       class="form-label"></label>
+
+                <input asp-for="Price"
+                       class="form-control"
+                       placeholder="Örn: 500" />
+
+                <span asp-validation-for="Price"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="form-check mb-3">
+                <input asp-for="IsActive"
+                       class="form-check-input" />
+
+                <label asp-for="IsActive"
+                       class="form-check-label">
+                    Hizmet Aktif
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Kaydet
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary">
+                Listeye Dön
+            </a>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

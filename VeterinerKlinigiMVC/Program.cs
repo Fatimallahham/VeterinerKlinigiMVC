@@ -1,6 +1,7 @@
-
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 using VeterinerKlinigiMVC.Data;
 using VeterinerKlinigiMVC.Models;
 
@@ -26,6 +27,16 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(
 // MVC servisleri
 builder.Services.AddControllersWithViews();
 
+// Türkçe dil ve kültür ayarları
+var culture = new CultureInfo("tr-TR");
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    options.DefaultRequestCulture = new RequestCulture(culture);
+    options.SupportedCultures = new[] { culture };
+    options.SupportedUICultures = new[] { culture };
+});
+
 var app = builder.Build();
 
 // HTTP istek hattı
@@ -38,6 +49,9 @@ else
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
+
+// Türkçe yerelleştirme
+app.UseRequestLocalization();
 
 app.UseHttpsRedirection();
 app.UseRouting();
@@ -54,5 +68,12 @@ app.MapControllerRoute(
 
 app.MapRazorPages()
     .WithStaticAssets();
+
+using (var scope = app.Services.CreateScope())
+{
+    await DbInitializer.SeedRolesAsync(scope.ServiceProvider);
+
+    await DbInitializer.SeedAdminAsync(scope.ServiceProvider);
+}
 
 app.Run();

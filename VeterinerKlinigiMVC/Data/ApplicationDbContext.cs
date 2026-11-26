@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using VeterinerKlinigiMVC.Models;
 
@@ -15,6 +14,8 @@ namespace VeterinerKlinigiMVC.Data
         }
 
         public DbSet<Pet> Pets { get; set; }
+
+        public DbSet<Service> Services { get; set; }
 
         protected override void OnModelCreating(
             ModelBuilder builder)

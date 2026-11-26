@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="utf-8" />
@@ -37,7 +36,6 @@
                         aria-label="Menüyü Aç">
 
                     <span class="navbar-toggler-icon"></span>
-
                 </button>
 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -61,6 +59,18 @@
                                    asp-controller="Pets"
                                    asp-action="Index">
                                     Evcil Hayvanlarım
+                                </a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark"
+                                   asp-area=""
+                                   asp-controller="Services"
+                                   asp-action="Index">
+                                    Hizmet Yönetimi
                                 </a>
                             </li>
                         }

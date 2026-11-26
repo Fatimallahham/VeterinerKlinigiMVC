@@ -1,0 +1,69 @@
+@model VeterinerKlinigiMVC.Models.Service
+
+@{
+    ViewData["Title"] = "Hizmet Sil";
+}
+
+<h1 class="mb-4">Hizmet Sil</h1>
+
+<div class="alert alert-danger">
+    Bu hizmeti silmek istediğinizden emin misiniz?
+    Bu işlem geri alınamaz.
+</div>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <h5 class="mb-0">Hizmet Bilgileri</h5>
+    </div>
+
+    <div class="card-body">
+
+        <dl class="row">
+
+            <dt class="col-sm-3">Hizmet Adı</dt>
+            <dd class="col-sm-9">@Model.Name</dd>
+
+            <dt class="col-sm-3">Açıklama</dt>
+            <dd class="col-sm-9">
+                @(Model.Description ?? "-")
+            </dd>
+
+            <dt class="col-sm-3">Süre</dt>
+            <dd class="col-sm-9">@Model.Duration dk</dd>
+
+            <dt class="col-sm-3">Ücret</dt>
+            <dd class="col-sm-9">
+                @Model.Price.ToString("N2",
+                    System.Globalization.CultureInfo.GetCultureInfo("tr-TR")) TL
+            </dd>
+
+            <dt class="col-sm-3">Durum</dt>
+            <dd class="col-sm-9">
+                @if (Model.IsActive)
+                {
+                    <span class="badge bg-success">Aktif</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">Pasif</span>
+                }
+            </dd>
+
+        </dl>
+
+    </div>
+</div>
+
+<form asp-action="Delete" method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <button type="submit" class="btn btn-danger">
+        Hizmeti Sil
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Vazgeç
+    </a>
+
+</form>
